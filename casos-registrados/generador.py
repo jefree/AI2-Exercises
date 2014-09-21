@@ -69,3 +69,22 @@ def crear_arbol(lista):
     construir_arbol(lista, 0, arbol.raiz)
 
     return arbol
+
+def generar_reglas(nodo, cab, atr, regla, reglas):
+
+    if (type(nodo.valor) == str):
+        regla = regla [:-5] + ' = %s' % nodo.valor
+
+        #@DEBGU
+        print(regla)
+
+        reglas.append(regla)
+
+    else:
+        reglaIzq = regla + cab[atr] + '<' + str(nodo.valor) + ' and '
+        reglaDer = regla + cab[atr] + '>' + str(nodo.valor) + ' and '
+
+        atr = (atr+1) % len(cab)
+
+        generar_reglas(nodo.hijos[0], cab, atr, reglaIzq, reglas)
+        generar_reglas(nodo.hijos[1], cab, atr, reglaDer, reglas)

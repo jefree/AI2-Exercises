@@ -1,8 +1,10 @@
-from generador import crear_arbol
+from generador import crear_arbol, generar_reglas
 from aprendiz import determinar_clase
 from cargador import cargar_datos
 
 def main():
+
+    cab = ['A', 'B', 'C']
 
     datos = [[3, 5, 1, 'A'],
              [5, 4, 2, 'B'],
@@ -13,13 +15,12 @@ def main():
              [3, 8, 6, 'A'],
              [2, 9, 8, 'B'],]
 
-    cab, datos2 = cargar_datos('data.cvs')
+    #cab, datos2 = cargar_datos('data.cvs')
     
-    arbol = crear_arbol(datos2)
-    print(arbol)
+    arbol = crear_arbol(datos)
 
-    clase = determinar_clase([0,0,0,0,0], arbol)
-    print(clase)
+    reglas = []
+    generar_reglas(arbol.raiz, cab, 0, '', reglas)
 
 if __name__ == '__main__':
     main()
